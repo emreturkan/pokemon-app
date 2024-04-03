@@ -18,7 +18,7 @@ const PokeSlider = ({ pokemon }: { pokemon: { results: basePokemon[] } }) => {
     cssEase: "linear",
   };
   return (
-    <div className="w-full h-72">
+    <div className="w-7/12 h-72 relative">
       <Slider {...settings}>
         {pokemon?.results.map((pokemon: basePokemon, index) => (
           <PokeCard key={`${pokemon.name}_${index}`} name={pokemon.name} />

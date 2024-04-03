@@ -72,7 +72,7 @@ export default async function Component() {
       </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-32">
-          <div className="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6">
+          <div className="container flex flex-col gap-6 items-center justify-center space-y-4 px-4 md:px-6">
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                 Welcome to the World of Pokémon
@@ -93,63 +93,6 @@ export default async function Component() {
               />
             </div>
             <PokeSlider pokemon={pokemon} />
-
-            <div className="container flex items-center justify-center gap-4 px-4 md:gap-8 md:px-6">
-              <Link className="w-24 p-4 grid rounded-xl " href="#">
-                <img
-                  alt="Bulbasaur"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center"
-                  height="200"
-                  src="/placeholder.svg"
-                  width="200"
-                />
-                <div className="text-sm font-medium text-center">Bulbasaur</div>
-              </Link>
-              <Link className="w-24 p-4 grid rounded-xl " href="#">
-                <img
-                  alt="Charmander"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center"
-                  height="200"
-                  src="/placeholder.svg"
-                  width="200"
-                />
-                <div className="text-sm font-medium text-center">
-                  Charmander
-                </div>
-              </Link>
-              <Link className="w-24 p-4 grid rounded-xl " href="#">
-                <img
-                  alt="Squirtle"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center"
-                  height="200"
-                  src="/placeholder.svg"
-                  width="200"
-                />
-                <div className="text-sm font-medium text-center">Squirtle</div>
-              </Link>
-              <Link className="w-24 p-4 grid rounded-xl " href="#">
-                <img
-                  alt="Pikachu"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center"
-                  height="200"
-                  src="/placeholder.svg"
-                  width="200"
-                />
-                <div className="text-sm font-medium text-center">Pikachu</div>
-              </Link>
-              <Link className="w-24 p-4 grid rounded-xl " href="#">
-                <img
-                  alt="Jigglypuff"
-                  className="aspect-square overflow-hidden rounded-xl object-cover object-center"
-                  height="200"
-                  src="/placeholder.svg"
-                  width="200"
-                />
-                <div className="text-sm font-medium text-center">
-                  Jigglypuff
-                </div>
-              </Link>
-            </div>
           </div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 border-t">
