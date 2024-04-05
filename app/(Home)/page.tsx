@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { getPokemon } from "@/lib/actions/get-poke";
-import PokeSlider from "@/components/poke-slider";
+import PokeSlider from "@/components/poke-slider/poke-slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default async function Component() {
@@ -71,7 +71,7 @@ export default async function Component() {
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-32">
+        <section className="w-full xl:pt-32">
           <div className="container flex flex-col gap-6 items-center justify-center space-y-4 px-4 md:px-6">
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
@@ -95,40 +95,58 @@ export default async function Component() {
             <PokeSlider pokemon={pokemon} />
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 border-t">
-          <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+        <section className="w-full py-12 md:pb-24">
+          <div className=" grid items-center justify-center gap-4 text-center  lg:gap-10">
             <div className="space-y-3">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Features
               </h2>
               <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                The ultimate Pokémon experience. Catch and collect Pokémon.
-                Battle other trainers. Explore different regions.
+                The Pokémon app comes with a range of features to enhance your
+                Pokémon experience.
               </p>
             </div>
-            <div className="mx-auto grid max-w-sm items-start gap-4 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-              <div className="grid gap-1">
-                <EggIcon className="mx-auto w-10 h-10" />
-                <h3 className="text-lg font-bold">Catch & Collect</h3>
+            <div className="mx-auto w-full max-w-[1200px] grid gap-6 sm:grid-cols-2 md:gap-12 lg:grid-cols-3">
+              <div className="flex flex-col items-center gap-2">
+                <EggIcon className="w-12 h-12" />
+                <h3 className="text-xl font-semibold">Catch Pokémon</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Catch and collect your favorite Pokémon. The world is full of
-                  Pokémon waiting to be caught.
+                  Easily catch Pokémon using augmented reality.
                 </p>
               </div>
-              <div className="grid gap-1">
-                <EggIcon className="mx-auto w-10 h-10" />
-                <h3 className="text-lg font-bold">Battle other Trainers</h3>
+              <div className="flex flex-col items-center gap-2">
+                <FishIcon className="w-12 h-12" />
+                <h3 className="text-xl font-semibold">Pokédex</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Test your skills by battling other trainers. Become a Pokémon
-                  master.
+                  Access information about all known Pokémon species.
                 </p>
               </div>
-              <div className="grid gap-1">
-                <EggIcon className="mx-auto w-10 h-10" />
-                <h3 className="text-lg font-bold">Explore different Regions</h3>
+              <div className="flex flex-col items-center gap-2">
+                <MonitorStopIcon className="w-12 h-12" />
+                <h3 className="text-xl font-semibold">PokéStops</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Travel the world and explore different regions. Each region
-                  has its own unique Pokémon.
+                  Find and spin PokéStops to get items.
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <BadgeIcon className="w-12 h-12" />
+                <h3 className="text-xl font-semibold">Gyms</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Battle at Gyms and earn badges.
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <ShieldIcon className="w-12 h-12" />
+                <h3 className="text-xl font-semibold">Raid Battles</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Team up with other Trainers to defeat powerful Raid Bosses.
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <CodeIcon className="w-12 h-12" />
+                <h3 className="text-xl font-semibold">Friends</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Connect with friends and send gifts.
                 </p>
               </div>
             </div>
@@ -300,6 +318,86 @@ function XIcon(props: React.SVGProps<SVGSVGElement>) {
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
+    </svg>
+  );
+}
+
+function BadgeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+    </svg>
+  );
+}
+
+function CodeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  );
+}
+
+function MonitorStopIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="9" y="7" width="6" height="6" />
+      <rect width="20" height="14" x="2" y="3" rx="2" />
+      <path d="M12 17v4" />
+      <path d="M8 21h8" />
+    </svg>
+  );
+}
+
+function ShieldIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
     </svg>
   );
 }
