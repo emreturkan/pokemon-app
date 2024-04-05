@@ -8,7 +8,7 @@ import { settings } from "@/lib/slider-settings";
 
 const PokeSlider = ({ pokemon }: { pokemon: { results: basePokemon[] } }) => {
   return (
-    <div className="w-7/12 h-72 relative">
+    <div className="w-full md:w-7/12 h-72 relative">
       <Suspense fallback={<CardSkeleton />}>
         <Slider {...settings}>
           {pokemon?.results.map((pokemon: basePokemon, index) => (
