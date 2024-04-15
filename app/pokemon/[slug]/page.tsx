@@ -10,7 +10,7 @@ import { Slider as UiSlider } from "@/components/ui/slider";
 import { getPokemonDetail, getPokemonEvolution } from "@/lib/actions/get-poke";
 import { formatStatName } from "@/lib/utils";
 import { PokemonDetail, PokemonEvolution, PokemonStats } from "@/types";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,19 +37,25 @@ const PokemonDetailPage = async ({ params }: { params: { slug: string } }) => {
     evolutionList.map((name) => getPokemonDetail(name))
   );
 
+  console.log("====================================");
+  console.log(pokeEvolution);
+  console.log("====================================");
+
   return (
     <>
       <div className=" border-t border-b border-gray-100 dark:border-gray-800">
-        <div className="container px-4 md:px-6 py-6 lg:py-12">
-          <Link href={"/"}>
-            <ArrowLeftIcon className="w-6 h-6 mt-6 mb-12" />
-          </Link>
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-            </h1>
+        <div className="container  px-4 md:px-6 py-6 ">
+          <div className="flex items-center gap-4">
+            <Link href={"/"}>
+              <ArrowLeftIcon className="w-6 h-6 mt-6  mb-12" />
+            </Link>
+            <div className="mb-6">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+              </h1>
+            </div>
           </div>
-          <div className="flex justify-between items-start">
+          <div className="flex gap-8">
             <div className="space-y-4">
               <Image
                 alt={pokemon.name}
@@ -66,7 +72,7 @@ const PokemonDetailPage = async ({ params }: { params: { slug: string } }) => {
                 <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
                   Characteristics
                 </h2>
-                <dl className="grid grid-cols-2 gap-2">
+                <dl className="grid gap-4">
                   <div className="flex items-center gap-2">
                     <ScalingIcon className="w-5 h-5 mr-1.5" />
                     <dt className="text-sm font-medium">Height</dt>
@@ -80,10 +86,10 @@ const PokemonDetailPage = async ({ params }: { params: { slug: string } }) => {
                   <div className="flex items-center gap-2">
                     <TypeIcon className="w-5 h-5 mr-1.5" />
                     <dt className="text-sm font-medium">Type</dt>
-                    <dd className="text-sm ml-auto">
+                    <dd className="text-sm ml-auto flex gap-2">
                       {pokemon.types.map((type: { type: { name: string } }) => (
                         <span
-                          className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+                          className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-green-700 dark:text-gray-300"
                           key={type.type.name}
                         >
                           {type.type.name}
@@ -97,52 +103,59 @@ const PokemonDetailPage = async ({ params }: { params: { slug: string } }) => {
                 <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
                   Abilities
                 </h2>
-                <ul className="list-disc list-inside grid gap-2">
+                <ul className="list-disc list-inside flex  gap-2">
                   {pokemon.abilities.map(
                     (ability: { ability: { name: string } }) => (
-                      <li key={ability.ability.name}>{ability.ability.name}</li>
+                      <li
+                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+                        key={ability.ability.name}
+                      >
+                        {ability.ability.name}
+                      </li>
                     )
                   )}
                 </ul>
               </div>
             </div>
-            <div>
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl">
-                  Evolution
-                </h2>
-                {evolutionPokemon.length > 0 ? (
-                  evolutionPokemon.map((pokemon: PokemonDetail) => (
-                    <div key={pokemon.name} className="flex items-center gap-4">
-                      <Image
-                        alt={pokemon.name}
-                        unoptimized
-                        quality={75}
-                        className="aspect-square overflow-hidden rounded-lg object-cover border"
-                        height="100"
-                        src={
-                          pokemon.sprites?.other?.["official-artwork"]
-                            .front_default
-                        }
-                        width="100"
-                      />
-                      <h3 className="text-lg font-medium">{pokemon.name}</h3>
-                    </div>
-                  ))
-                ) : (
-                  <div>
-                    <Image
-                      src={"/placeholder.svg"}
-                      alt="no-evolution"
-                      className="aspect-square overflow-hidden rounded-lg object-cover border"
-                      height="100"
-                      width="100"
-                    />
-                    <p>No evolution</p>
-                  </div>
-                )}
+          </div>
+        </div>
+      </div>
+      <div className=" border-t border-b border-gray-100 dark:border-gray-800 ">
+        <div className="space-y-4 container my-8">
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-4xl">
+            Evolution
+          </h2>
+          <div className="flex items-center gap-24">
+            {evolutionPokemon.length > 0 ? (
+              evolutionPokemon.map((pokemon: PokemonDetail) => (
+                <div key={pokemon.name} className="flex items-center gap-4">
+                  <Image
+                    alt={pokemon.name}
+                    unoptimized
+                    quality={75}
+                    className="aspect-square overflow-hidden rounded-lg object-cover border"
+                    height="100"
+                    src={
+                      pokemon.sprites?.other?.["official-artwork"].front_default
+                    }
+                    width="100"
+                  />
+                  <h3 className="text-lg font-medium">{pokemon.name}</h3>
+                  <ArrowRightIcon className="w-12 h-12" />
+                </div>
+              ))
+            ) : (
+              <div>
+                <Image
+                  src={"/placeholder.svg"}
+                  alt="no-evolution"
+                  className="aspect-square overflow-hidden rounded-lg object-cover border"
+                  height="100"
+                  width="100"
+                />
+                <p>No evolution</p>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

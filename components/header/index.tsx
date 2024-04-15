@@ -10,7 +10,7 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <Link
             className="flex items-center space-x-2 text-2xl font-semibold tracking-wider sm:text-3xl"
-            href="#"
+            href="/"
           >
             <FishIcon className="w-6 h-6 rounded-lg aspect-square overflow-hidden" />
             <span className="hidden md:inline">Pokémon</span>

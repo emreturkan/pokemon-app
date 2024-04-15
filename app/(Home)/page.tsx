@@ -24,7 +24,6 @@ export default async function Component() {
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <Header />
       <main className="flex-1">
         <section className="w-full xl:pt-32">
           <div className="container flex flex-col gap-6 items-center justify-center space-y-4 px-4 md:px-6">
@@ -114,8 +113,7 @@ export default async function Component() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {lastPokemon.results
-                .reverse()
-                .slice(0, 20)
+                .slice(200, 220)
                 .map((pokemon: PokemonDetail) => (
                   <PokemonCard key={pokemon.name} pokemon={pokemon.name} />
                 ))}
